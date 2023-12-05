@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Widgets/main_widets.dart';
+import 'package:giwe_away/Screens/profile_screen.dart';
+import '../Widgets/main_widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -13,35 +14,40 @@ class RegisterScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Inputfield("First Name", 370, 57.5, 10),
+            const InputField("First Name", 370, 57.5, 10),
             const SizedBox(
               height: 15,
             ),
-            const Inputfield("Last name", 370, 57.5, 10),
+            const InputField("Last name", 370, 57.5, 10),
             const SizedBox(
               height: 15,
             ),
-            const Inputfield("Phone Number", 370, 57.5, 10),
+            const InputField("Phone Number", 370, 57.5, 10),
             const SizedBox(
               height: 15,
             ),
-            const Inputfield("Email", 370, 57.5, 10),
+            const InputField("Email", 370, 57.5, 10),
             const SizedBox(
               height: 35,
             ),
-            const Inputfield(
+            const InputField(
                 "Passord", 370, 57.5, 10), //need to use other type of widget
             const SizedBox(
               height: 15,
             ),
-            const Inputfield("Confirm Password", 370, 57.5,
+            const InputField("Confirm Password", 370, 57.5,
                 10), //need to use other type of widget
             const SizedBox(
               height: 25,
             ),
             MyButton(
                 onPressed: () {
-                  print("object");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UserProfile(),
+                    ),
+                  );
                 },
                 btnName: "Register"),
           ],
