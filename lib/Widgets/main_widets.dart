@@ -27,7 +27,7 @@ class Inputfield extends StatelessWidget {
 class MyButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String btnName;
-  MyButton({required this.onPressed, required this.btnName, super.key});
+  const MyButton({required this.onPressed, required this.btnName, super.key});
 
   @override
   Widget build(BuildContext context) {
