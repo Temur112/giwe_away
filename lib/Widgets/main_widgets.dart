@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Inputfield extends StatelessWidget {
+class InputField extends StatelessWidget {
   final String label;
   final double width;
   final double height;
   final double borderRadius;
 
-  const Inputfield(this.label, this.width, this.height, this.borderRadius,
+  const InputField(this.label, this.width, this.height, this.borderRadius,
       {super.key});
   @override
   Widget build(BuildContext context) {

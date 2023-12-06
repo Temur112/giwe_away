@@ -15,33 +15,36 @@ class IntroScreen extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       body: Center(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            screenTitle,
-            style: const TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w600,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Text(
+              screenTitle,
+              style: const TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
-          const SizedBox(
+            const SizedBox(
             height: 50,
-          ),
-          Image.asset(imagePath),
-          const SizedBox(
-            height: 50,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, nextRoute);
-            },
-            child: Text(buttonTitle),
-          ),
-        ],
-      )),
+            ),
+            Image.asset(imagePath),
+              const SizedBox(
+              height: 50,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, nextRoute);
+              },
+              child: Text(buttonTitle),
+              ),
+            ],
+        ),
+      ),
     );
   }
 }
