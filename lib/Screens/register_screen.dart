@@ -31,7 +31,7 @@ class RegisterScreen extends StatelessWidget {
               height: 35,
             ),
             const InputField(
-                "Passord", 370, 57.5, 10), //need to use other type of widget
+                "Password", 370, 57.5, 10), //need to use other type of widget
             const SizedBox(
               height: 15,
             ),
