@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giwe_away/Screens/Login_Screen.dart';
 import 'package:giwe_away/Screens/profile_screen.dart';
 import '../Widgets/main_widgets.dart';
 
@@ -45,7 +46,7 @@ class RegisterScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const UserProfile(),
+                      builder: (context) => const Login_Screen(),
                     ),
                   );
                 },
