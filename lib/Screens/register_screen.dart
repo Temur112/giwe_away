@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giwe_away/Screens/login_screen.dart';
 import 'package:giwe_away/Screens/profile_screen.dart';
 import '../Widgets/main_widgets.dart';
 import 'package:http/http.dart' as http;
@@ -56,8 +57,12 @@ class _RegisterScreen extends State<RegisterScreen> {
             ),
             MyButton(
                 onPressed: () {
-                  register(firstName, lastName, phoneNumber, email, password1,
-                      password2);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Login_Screen(),
+                    ),
+                  );
                 },
                 btnName: "Register"),
           ],

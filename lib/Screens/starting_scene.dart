@@ -30,11 +30,11 @@ class IntroScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-            height: 50,
+            height: 30,
             ),
             Image.asset(imagePath),
               const SizedBox(
-              height: 50,
+              height: 30,
             ),
             ElevatedButton(
               onPressed: () {
