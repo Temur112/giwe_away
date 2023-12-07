@@ -5,7 +5,7 @@ class InputField extends StatelessWidget {
   final double width;
   final double height;
   final double borderRadius;
-
+  
   const InputField(this.label, this.width, this.height, this.borderRadius,
       {super.key});
   @override

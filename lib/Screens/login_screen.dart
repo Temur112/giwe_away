@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:giwe_away/Screens/all_items.dart';
 import 'package:giwe_away/Screens/profile_screen.dart';
 import '../Widgets/main_widgets.dart';
-
 class Login_Screen extends StatelessWidget {
   const Login_Screen({super.key});
   @override
@@ -27,7 +27,7 @@ class Login_Screen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const UserProfile(),
+                      builder: (context) => AllItems(),
                     ),
                   );
                 },
