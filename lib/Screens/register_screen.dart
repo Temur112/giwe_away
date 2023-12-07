@@ -19,6 +19,8 @@ class _RegisterScreen extends State<RegisterScreen> {
   TextEditingController password1 = TextEditingController();
   TextEditingController password2 = TextEditingController();
 
+  String errorMsg = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +31,7 @@ class _RegisterScreen extends State<RegisterScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(errorMsg),
             InputField("First Name", 370, 57.5, 10, firstName),
             const SizedBox(
               height: 15,
@@ -57,12 +60,8 @@ class _RegisterScreen extends State<RegisterScreen> {
             ),
             MyButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Login_Screen(),
-                    ),
-                  );
+                  register(firstName, lastName, phoneNumber, email, password1,
+                      password2);
                 },
                 btnName: "Register"),
           ],
@@ -78,7 +77,8 @@ class _RegisterScreen extends State<RegisterScreen> {
       TextEditingController e,
       TextEditingController p1,
       TextEditingController p2) async {
-    const String apiUrl = "http://localhost:8080/api/users";
+    const String apiUrl =
+        "https://1a28-195-158-15-217.ngrok-free.app/api/users";
     Map<String, dynamic> userData = {
       "f_name": fn.text,
       "l_name": ln.text,
@@ -95,12 +95,15 @@ class _RegisterScreen extends State<RegisterScreen> {
         },
         body: jsonEncode(userData),
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         // Registration successful
         print('User registered successfully!');
       } else {
         // Registration failed
         print('Failed to register user: ${response.statusCode}');
+        setState(() {
+          errorMsg = "Something went wrongtry again";
+        });
       }
     } catch (error) {
       print('Error registering user: $error');

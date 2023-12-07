@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:giwe_away/Screens/all_items.dart';
 import 'package:giwe_away/Screens/profile_screen.dart';
 import '../Widgets/main_widgets.dart';
+
 class Login_Screen extends StatelessWidget {
-  const Login_Screen({super.key});
+  final TextEditingController loginusrn = TextEditingController();
+  final TextEditingController loginpswd = TextEditingController();
+  Login_Screen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,11 +17,11 @@ class Login_Screen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const InputField("Username", 370, 57.5, 10),
+            InputField("Username", 370, 57.5, 10, loginusrn),
             const SizedBox(
               height: 25,
             ),
-            const InputField("Password", 370, 57.5, 10),
+            InputField("Password", 370, 57.5, 10, loginpswd),
             const SizedBox(
               height: 25,
             ),
@@ -38,4 +41,3 @@ class Login_Screen extends StatelessWidget {
     );
   }
 }
-
