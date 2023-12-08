@@ -4,6 +4,7 @@ import 'package:giwe_away/Screens/profile_screen.dart';
 import '../Widgets/main_widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:giwe_away/validations/validations.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -32,6 +33,7 @@ class _RegisterScreen extends State<RegisterScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(errorMsg),
+            const SizedBox(height: 20),
             InputField("First Name", 370, 57.5, 10, firstName),
             const SizedBox(
               height: 15,
@@ -87,26 +89,35 @@ class _RegisterScreen extends State<RegisterScreen> {
       "pass2": p2.text,
       "address": "default address",
     };
-    try {
-      final response = await http.post(
-        Uri.parse(apiUrl),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(userData),
-      );
-      if (response.statusCode == 201) {
-        // Registration successful
-        print('User registered successfully!');
-      } else {
-        // Registration failed
-        print('Failed to register user: ${response.statusCode}');
-        setState(() {
-          errorMsg = "Something went wrongtry again";
-        });
+
+    if (doesMatch(p1.text, p2.text) &&
+        isStrong(p1.text) &&
+        isEmailValid(e.text)) {
+      try {
+        final response = await http.post(
+          Uri.parse(apiUrl),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(userData),
+        );
+        if (response.statusCode == 201) {
+          // Registration successful
+          print('User registered successfully!');
+        } else {
+          // Registration failed
+          print('Failed to register user: ${response.statusCode}');
+          setState(() {
+            errorMsg = "Something went wrongtry again";
+          });
+        }
+      } catch (error) {
+        print('Error registering user: $error');
       }
-    } catch (error) {
-      print('Error registering user: $error');
+    } else {
+      setState(() {
+        errorMsg = "Something is again please check";
+      });
     }
   }
 }
