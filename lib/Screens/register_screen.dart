@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giwe_away/Screens/login_screen.dart';
 import 'package:giwe_away/Screens/profile_screen.dart';
+import 'package:giwe_away/constants/api_constants.dart';
 import '../Widgets/main_widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -72,6 +73,8 @@ class _RegisterScreen extends State<RegisterScreen> {
     );
   }
 
+  bool isRegistered = false;
+
   Future<void> register(
       TextEditingController fn,
       TextEditingController ln,
@@ -79,13 +82,13 @@ class _RegisterScreen extends State<RegisterScreen> {
       TextEditingController e,
       TextEditingController p1,
       TextEditingController p2) async {
-    const String apiUrl =
-        "https://1a28-195-158-15-217.ngrok-free.app/api/users";
+    const String apiUrl = api_register;
+
     Map<String, dynamic> userData = {
       "f_name": fn.text,
       "l_name": ln.text,
       "email": e.text,
-      "pass1": p1.text,
+      "password": p1.text,
       "pass2": p2.text,
       "address": "default address",
     };
@@ -104,19 +107,24 @@ class _RegisterScreen extends State<RegisterScreen> {
         if (response.statusCode == 201) {
           // Registration successful
           print('User registered successfully!');
+          isRegistered = true;
         } else {
           // Registration failed
           print('Failed to register user: ${response.statusCode}');
-          setState(() {
-            errorMsg = "Something went wrongtry again";
-          });
         }
       } catch (error) {
         print('Error registering user: $error');
       }
+    } else {}
+    goLogin();
+  }
+
+  void goLogin() {
+    if (isRegistered) {
+      Navigator.pushNamed(context, '/login');
     } else {
       setState(() {
-        errorMsg = "Something is again please check";
+        errorMsg = "Something is wrong trya again";
       });
     }
   }
