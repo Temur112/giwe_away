@@ -124,7 +124,7 @@ class _RegisterScreen extends State<RegisterScreen> {
       Navigator.pushNamed(context, '/login');
     } else {
       setState(() {
-        errorMsg = "Something is wrong trya again";
+        errorMsg = "Something is wrong try again";
       });
     }
   }
