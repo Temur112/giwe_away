@@ -7,12 +7,12 @@ class IntroScreen extends StatelessWidget {
   final String nextRoute;
 
   const IntroScreen(
-    this.screenTitle,
-    this.imagePath,
-    this.buttonTitle,
-    this.nextRoute, {
-    super.key,
-  });
+      this.screenTitle,
+      this.imagePath,
+      this.buttonTitle,
+      this.nextRoute, {
+        super.key,
+      });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
