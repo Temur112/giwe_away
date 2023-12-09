@@ -9,26 +9,27 @@ class MainScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/people.png',
+            Image.asset(
+              'assets/images/people.png',
               width: 250,
               height: 250,
             ),
             const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               "Don’t throw it away - Give it away",
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w700,
               ),
             ),
-
             const SizedBox(
               height: 40,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Adjust alignment as needed
+              mainAxisAlignment:
+                  MainAxisAlignment.spaceEvenly, // Adjust alignment as needed
               children: <Widget>[
                 MyButton(
                   onPressed: () {
@@ -47,14 +48,13 @@ class MainScreen extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            Text(
+            const Text(
               "Search for more items",
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
             ),
-
             MyButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/explore');
