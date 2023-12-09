@@ -43,6 +43,21 @@ class _Login_Screen extends State<Login_Screen> {
                   loginCall(loginusrn.text, loginpswd.text);
                 },
                 btnName: "Login"),
+            const SizedBox(
+              height: 100,
+            ),
+            Text(
+              "Don't have an account?",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            MyButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/register');
+                },
+                btnName: "Sign Up"),
           ],
         ),
       ),
