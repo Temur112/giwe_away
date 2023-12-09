@@ -13,8 +13,8 @@ class UserProfile extends StatelessWidget {
           backgroundColor: Colors.orange,
           title: const Center(child: Text("My Profile")),
         ),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(20.0,30.0,20.0,0.0),
+        body: const Padding(
+          padding: EdgeInsets.fromLTRB(20.0,30.0,20.0,0.0),
           child: Column(
             children: [
               CircleAvatar(

@@ -13,35 +13,44 @@ class _AllItemsState extends State<AllItems> {
     Item(itemName: "Chess", description: "very good"),
     Item(itemName: "Chess", description: "very good"),
     Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+    Item(itemName: "Chess", description: "very good"),
+
   ];
 
   Widget itemTemplate(item){
     return Card(
       margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-      child: Row(
-        children: [
-          Image.asset('assets/images/me.png', height: 30,width: 30,),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch ,
-            children: <Widget>[
-              Text(
-                item.itemName,
-                style: const TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.amber
-
-                ),
-              ),
-              const SizedBox(height: 6.0,),
-              Text(
-                item.description,
-                style: TextStyle(
-                  fontSize: 14.0,
-                  color: Colors.amber[200]
-                ),
-              )
-            ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch ,
+        children: <Widget>[
+          Text(
+            item.itemName,
+            style: const TextStyle(
+              fontSize: 18.0,
+              color: Colors.amber
+            ),
           ),
+          const SizedBox(height: 6.0,),
+          Text(
+            item.description,
+            style: TextStyle(
+              fontSize: 14.0,
+              color: Colors.amber[200]
+            ),
+          )
         ],
       ),
     );
@@ -54,7 +63,7 @@ class _AllItemsState extends State<AllItems> {
         appBar: AppBar(
           title: const Center(child: Text("All Items")),
         ),
-        body: Column(
+        body: ListView(
           children: items.map((item) => itemTemplate(item)).toList(),
         ),
       ),

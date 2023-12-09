@@ -17,13 +17,17 @@ class MainScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const Text(
-              "Don’t throw it away - Give it away",
-              style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.w700,
+            const Center(
+              child: Text(
+                "Don’t throw it away\nGive it away",
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
+
             const SizedBox(
               height: 40,
             ),
