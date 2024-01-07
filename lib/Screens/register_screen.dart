@@ -27,7 +27,7 @@ class _RegisterScreen extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("registration page"),
+        title: const Text("Registration page"),
       ),
       body: Center(
         child: Column(
