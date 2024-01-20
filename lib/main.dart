@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:giwe_away/Screens/all_items.dart';
+import 'package:giwe_away/Screens/product_details.dart';
 import 'Screens/starting_scene.dart';
 import 'Screens/register_screen.dart';
 import 'Screens/profile_screen.dart';

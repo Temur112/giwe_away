@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 
 class InputField extends StatelessWidget {
   final String label;
@@ -37,3 +39,75 @@ class MyButton extends StatelessWidget {
     return ElevatedButton(onPressed: onPressed, child: Text(btnName));
   }
 }
+
+class ItemTemplate extends StatelessWidget {
+  final dynamic item;
+
+  const ItemTemplate({Key? key, required this.item}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.lightBlue,
+      margin: const EdgeInsets.fromLTRB(16.0, 16.0, 4.0, 0.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                item.itemImage,
+                height: 100,
+                width: 70,
+              ),
+              Column(
+                children: [
+                  Text(
+                    item.description,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                    ),
+                    overflow: TextOverflow.ellipsis, // Handle text overflow
+                  ),
+                  Text(
+                    item.category,
+                    style: const TextStyle(fontSize: 18.0),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Text(
+            item.itemName,
+            style: const TextStyle(
+              fontSize: 14.0,
+              color: Colors.amber,
+            ),
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            DateFormat('yyyy-MM-dd').format(item.postedDate),
+            style: TextStyle(
+              fontSize: 8.0,
+              color: Colors.amber[200],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+class ShowToastMessage {
+  void showToast(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+    );
+}}

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:giwe_away/Screens/items_card.dart';
+import 'package:giwe_away/Widgets/items_card.dart';
+import 'package:giwe_away/Widgets/main_widgets.dart';
+import 'create_new_item.dart';
 
 class AllItems extends StatefulWidget {
   const AllItems({super.key});
@@ -10,51 +12,21 @@ class AllItems extends StatefulWidget {
 
 class _AllItemsState extends State<AllItems> {
   List<Item> items = [
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-    Item(itemName: "Chess", description: "very good"),
-
+    // Item(
+    //   itemImage: "assets/images/bottle.png",
+    //   category: "book",
+    //   itemName: "Chess",
+    //   description: "very good",
+    //   postedDateString: "2023-05-12",
+    // ),
+    // Item(
+    //   itemImage: "assets/images/headphone.png",
+    //   category: "book",
+    //   itemName: "Chess",
+    //   description: "very good",
+    //   postedDateString:"2023-03-19",
+    // ),
   ];
-
-  Widget itemTemplate(item){
-    return Card(
-      margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch ,
-        children: <Widget>[
-          Text(
-            item.itemName,
-            style: const TextStyle(
-              fontSize: 18.0,
-              color: Colors.amber
-            ),
-          ),
-          const SizedBox(height: 6.0,),
-          Text(
-            item.description,
-            style: TextStyle(
-              fontSize: 14.0,
-              color: Colors.amber[200]
-            ),
-          )
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +35,50 @@ class _AllItemsState extends State<AllItems> {
         appBar: AppBar(
           title: const Center(child: Text("All Items")),
         ),
-        body: ListView(
-          children: items.map((item) => itemTemplate(item)).toList(),
-        ),
+        body: items.isEmpty
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("No item in the list yet"),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CreateNewItem()),
+                        );
+                      },
+                      child: const Text("Add Item"),
+                    ),
+                  ],
+                ),
+              )
+            : Column(
+              children: [
+                GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 0.0,
+                      mainAxisSpacing: 0.0,
+                    ),
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      return ItemTemplate(item: items[index]);
+                    },
+                  ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CreateNewItem()),
+                    );
+                  },
+                  child: const Text("Add Item"),
+                ),
+              ],
+            ),
       ),
     );
   }
