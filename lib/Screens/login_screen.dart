@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:giwe_away/Screens/all_items.dart';
 import 'package:giwe_away/Screens/profile_screen.dart';
+import 'package:giwe_away/models/User.dart';
 import '../Widgets/main_widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:giwe_away/constants/api_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login_Screen extends StatefulWidget {
   Login_Screen({super.key});
@@ -69,22 +71,35 @@ class _Login_Screen extends State<Login_Screen> {
   void loginCall(String e, String p) async {
     const String apiUrl = api_login;
 
-    Map<String, dynamic> userData = {
-      "email": e,
-      "password": p,
-      "address": "default address",
-    };
+    //domenstration
+
+    // Map<String, dynamic> userData = {
+    //   "email": e,
+    //   "password": p,
+    //   "address": "default address",
+    // };
 
     try {
-      final response = await http.post(
-        Uri.parse(apiUrl),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(userData),
-      );
+      final response = await http.post(Uri.parse(apiUrl),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{"email": e, "password": p}));
       if (response.statusCode == 200) {
         // Registration successful
+        print('login successfull');
+        User user = User.fromJson(jsonDecode(response.body));
+        WidgetsFlutterBinding.ensureInitialized();
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        print("after preferences");
+        preferences.setInt("id", user.id);
+        print("object");
+        preferences.setString("email", user.email);
+        preferences.setString("l_name", user.l_name);
+        preferences.setString("f_name", user.f_name);
+        preferences.setString("address", user.address);
+
+        print(response.body);
         print('login successfull');
         logedIn = true;
       } else {
@@ -96,7 +111,7 @@ class _Login_Screen extends State<Login_Screen> {
     }
 
     if (logedIn) {
-      goUserProfile();
+      goExplore();
     } else {
       setState(() {
         errorMsg = "Enter valid credientials";
@@ -104,8 +119,8 @@ class _Login_Screen extends State<Login_Screen> {
     }
   }
 
-  goUserProfile() {
-    Navigator.pushNamed(context, "/profile");
-    Navigator.popUntil(context, ModalRoute.withName('/profile'));
+  goExplore() {
+    Navigator.pushNamed(context, "/explore");
+    Navigator.popUntil(context, ModalRoute.withName('/explore'));
   }
 }

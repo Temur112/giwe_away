@@ -82,7 +82,7 @@ class _RegisterScreen extends State<RegisterScreen> {
       TextEditingController e,
       TextEditingController p1,
       TextEditingController p2) async {
-    const String apiUrl = "https://5048-86-62-2-178.ngrok-free.app/api/users";
+    const String apiUrl = api_register;
 
     Map<String, dynamic> userData = {
       "f_name": fn.text,

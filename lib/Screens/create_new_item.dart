@@ -1,9 +1,15 @@
 // ignore_for_file: library_private_types_in_public_api
+import 'dart:ffi';
+import "dart:io";
+import 'dart:typed_data';
+import 'package:giwe_away/models/Products.dart';
+import "package:image_picker/image_picker.dart";
 
 import 'package:flutter/material.dart';
 import 'package:giwe_away/Widgets/items_card.dart';
 import 'package:giwe_away/Widgets/main_widgets.dart';
 import 'package:giwe_away/services/requests.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateNewItem extends StatefulWidget {
   const CreateNewItem({Key? key}) : super(key: key);
@@ -13,9 +19,25 @@ class CreateNewItem extends StatefulWidget {
 }
 
 class _CreateNewItemState extends State<CreateNewItem> {
+  File? _image;
+  final picker = ImagePicker();
   TextEditingController itemNameController = TextEditingController();
   TextEditingController itemDescriptionController = TextEditingController();
   String selectedCategory = 'Category 1'; // Initialize with a default category
+
+  Uint8List pickedFile = Uint8List(0);
+  Future getImage() async {
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      pickedFile = await pickedImage.readAsBytes();
+    }
+
+    setState(() {
+      if (pickedImage != null) {
+        _image = File(pickedImage.path);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +54,14 @@ class _CreateNewItemState extends State<CreateNewItem> {
             children: [
               Center(
                 child: GestureDetector(
-                  onTap: chooseFromGallery,
-                  child: Image.asset(
-                    "assets/images/drag_drop.png",
-                    height: 100,
-                    width: 150,
-                  ),
+                  onTap: getImage,
+                  child: _image == null
+                      ? Container(
+                          height: 200,
+                          color: Colors.grey[300],
+                          child: const Center(child: Icon(Icons.add_a_photo)),
+                        )
+                      : Image.file(_image!),
                 ),
               ),
               const SizedBox(
@@ -85,12 +109,14 @@ class _CreateNewItemState extends State<CreateNewItem> {
                           'Category 2',
                           'Category 3',
                           'Category 4'
-                        ].map<DropdownMenuItem<String>>(
+                        ]
+                            .map<DropdownMenuItem<String>>(
                               (String value) => DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
                               ),
-                            ).toList(),
+                            )
+                            .toList(),
                       ),
                     ),
                   ),
@@ -113,21 +139,34 @@ class _CreateNewItemState extends State<CreateNewItem> {
               Center(
                 child: ElevatedButton(
                   onPressed: () async {
-                    Item newItem = Item(
-                        itemImage: "assets/images/bottle.png",
-                        category: selectedCategory,
-                        itemName: itemNameController.text,
+                    if (_image == null ||
+                        selectedCategory == "" ||
+                        itemNameController.text == "" ||
+                        itemDescriptionController.text == "") {
+                      ShowToastMessage().showToast("Something is wrong");
+                    } else {
+                      Products product = Products(
+                        id: 1,
+                        name: itemNameController.text,
                         description: itemDescriptionController.text,
-                        postedDateString: DateTime.now().toString());
-
-                    sendItemToApi(newItem);
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Item added successfully!'),
-                      ),
-                    );
-                    Navigator.pop(context);
+                        category: selectedCategory,
+                        image: pickedFile,
+                      );
+                      SharedPreferences preferences =
+                          await SharedPreferences.getInstance();
+                      int? id = preferences.getInt("id");
+                      if (id != null) {
+                        print(product.image);
+                        sendItemToApi(product, id);
+                      }
+                      ;
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Item added successfully!'),
+                        ),
+                      );
+                    }
                   },
                   child: const Text('Add Item'),
                 ),
@@ -139,7 +178,7 @@ class _CreateNewItemState extends State<CreateNewItem> {
     );
   }
 
-  void chooseFromGallery() {
-    ShowToastMessage().showToast("Image is uploaded");
-  }
+  // void chooseFromGallery() {
+  //   ShowToastMessage().showToast("Image is uploaded");
+  // }
 }
