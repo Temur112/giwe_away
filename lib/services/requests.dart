@@ -13,7 +13,7 @@ Future<void> sendItemToApi(Products product, int id) async {
     print("hello world");
 
     final response = await http.post(
-      Uri.parse(api_addProduct),
+      Uri.parse("$api_addProduct?userId=$id"),
       headers: <String, String>{'Content-Type': 'application/json'},
       body: jsonEncode(product.toJson()),
     );
@@ -27,5 +27,15 @@ Future<void> sendItemToApi(Products product, int id) async {
     if (kDebugMode) {
       print("The problem is $e");
     }
+  }
+}
+
+Future<List<Products>> getAllProducts() async {
+  final response = await http.get(Uri.parse(api_allProducts));
+  if (response.statusCode == 200) {
+    final List<dynamic> data = json.decode(response.body);
+    return data.map((json) => Products.fromJson(json)).toList();
+  } else {
+    throw Exception('Failed to load products');
   }
 }

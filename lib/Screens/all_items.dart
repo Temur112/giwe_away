@@ -11,22 +11,7 @@ class AllItems extends StatefulWidget {
 }
 
 class _AllItemsState extends State<AllItems> {
-  List<Item> items = [
-    // Item(
-    //   itemImage: "assets/images/bottle.png",
-    //   category: "book",
-    //   itemName: "Chess",
-    //   description: "very good",
-    //   postedDateString: "2023-05-12",
-    // ),
-    // Item(
-    //   itemImage: "assets/images/headphone.png",
-    //   category: "book",
-    //   itemName: "Chess",
-    //   description: "very good",
-    //   postedDateString:"2023-03-19",
-    // ),
-  ];
+  List<Item> items = [];
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +40,10 @@ class _AllItemsState extends State<AllItems> {
                 ),
               )
             : Column(
-              children: [
-                GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                children: [
+                  GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 0.0,
                       mainAxisSpacing: 0.0,
@@ -67,18 +53,18 @@ class _AllItemsState extends State<AllItems> {
                       return ItemTemplate(item: items[index]);
                     },
                   ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CreateNewItem()),
-                    );
-                  },
-                  child: const Text("Add Item"),
-                ),
-              ],
-            ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CreateNewItem()),
+                      );
+                    },
+                    child: const Text("Add Item"),
+                  ),
+                ],
+              ),
       ),
     );
   }
