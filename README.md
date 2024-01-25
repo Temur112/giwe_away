@@ -6,6 +6,10 @@ GiveAway application where anyone can get an item or give it to others for free 
 the application. The app starts with a simple starting screen where the user may go to
 the login, registration pages or just explore the app without logging in. 
 
+We are working on the project in 2 laptops only as my laptop is not supporting some features of the project.
+Here I just wanted to inform you about the reason why we are pushing in 2 accounts only. However, we are all
+working on it.
+
 
 
 
