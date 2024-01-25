@@ -32,11 +32,10 @@ class InputField extends StatelessWidget {
 class MyButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String btnName;
-  const MyButton({required this.onPressed, required this.btnName, super.key});
-
+  const MyButton({super.key, required this.onPressed, required this.btnName});
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: onPressed, child: Text(btnName));
+    return ElevatedButton(onPressed: onPressed, style: ElevatedButton.styleFrom(primary: Colors.orangeAccent), child: Text(btnName));
   }
 }
 

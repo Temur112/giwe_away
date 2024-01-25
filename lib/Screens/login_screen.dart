@@ -17,6 +17,7 @@ class Login_Screen extends StatefulWidget {
 class _Login_Screen extends State<Login_Screen> {
   final TextEditingController loginusrn = TextEditingController();
   final TextEditingController loginpswd = TextEditingController();
+  bool loggedIn = false;
   String errorMsg = "";
   @override
   Widget build(BuildContext context) {
@@ -66,7 +67,6 @@ class _Login_Screen extends State<Login_Screen> {
     );
   }
 
-  bool logedIn = false;
 
   void loginCall(String e, String p) async {
     const String apiUrl = api_login;
@@ -101,7 +101,7 @@ class _Login_Screen extends State<Login_Screen> {
 
         print(response.body);
         print('login successfull');
-        logedIn = true;
+        loggedIn = true;
       } else {
         // Registration failed
         print('Failed to login user: ${response.statusCode}');
@@ -110,8 +110,8 @@ class _Login_Screen extends State<Login_Screen> {
       print('Error registering user: $error');
     }
 
-    if (logedIn) {
-      goExplore();
+    if (loggedIn) {
+      goExplore(loggedIn);
     } else {
       setState(() {
         errorMsg = "Enter valid credientials";
@@ -119,8 +119,10 @@ class _Login_Screen extends State<Login_Screen> {
     }
   }
 
-  goExplore() {
-    Navigator.pushNamed(context, "/explore");
+
+  goExplore(bool loggedIn) {
+    Navigator.pushNamed(context, "/explore",arguments: {'loggedIn': loggedIn});
     Navigator.popUntil(context, ModalRoute.withName('/explore'));
   }
+
 }
