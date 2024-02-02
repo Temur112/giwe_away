@@ -6,6 +6,7 @@ class Item {
   String itemName;
   String description;
   DateTime postedDate;
+  bool isAvailable;
 
   Item({
     // required this.userId,
@@ -15,5 +16,6 @@ class Item {
     required this.itemName,
     required this.description,
     required String postedDateString,
+    required this.isAvailable
   }) : postedDate = DateTime.parse(postedDateString);
 }

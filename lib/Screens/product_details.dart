@@ -44,19 +44,25 @@ class _ProductDetailsState extends State<ProductDetails> {
         category: "book",
         itemName: "Chess",
         description: "very good",
-        postedDateString: '"2023-01-19"',      ),
+        postedDateString: '"2023-01-19"',
+        isAvailable: true
+      ),
       Item(
         itemImage: "assets/images/headphone.png",
         category: "electronics",
         itemName: "Headphones",
         description: "excellent quality",
-        postedDateString: '"2023-01-19"',      ),
+        postedDateString: '"2023-01-19"',
+        isAvailable: false
+      ),
       Item(
         itemImage: "assets/images/watch.png",
         category: "fashion",
         itemName: "Wristwatch",
         description: "stylish design",
-        postedDateString: '"2023-01-19"',      ),
+        postedDateString: '"2023-01-19"',
+        isAvailable: true
+      ),
     ];
 
     return SizedBox(

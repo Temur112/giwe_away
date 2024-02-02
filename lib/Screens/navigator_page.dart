@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:giwe_away/Screens/all_items.dart';
+import 'package:giwe_away/Screens/donations_screen.dart';
 import 'package:giwe_away/Screens/main_screen.dart';
 import 'package:giwe_away/Screens/profile_screen.dart';
 
@@ -39,7 +40,7 @@ class _MyHomePageState extends State<NavigatorHomePage> {
   final List<Widget> _pages = [
     const MainScreen(),
     const AllItems(),
-    const DonationsPage(),
+    const DonationsScreen(),
     const AdoptionsPage(),
     const UserProfile(),
   ];
@@ -56,33 +57,31 @@ class _MyHomePageState extends State<NavigatorHomePage> {
               _currentIndex = index;
             });
           } else {
-            // Handle the case when the user is not logged in and tries to click on restricted tabs
-            // You can show a message or navigate to the login screen, for example.
             print('User is not logged in. Restricted access.');
           }
         },
-        items: [
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(
             backgroundColor: Colors.orangeAccent,
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             backgroundColor: Colors.orangeAccent,
             icon: Icon(Icons.search),
             label: 'Explore',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             backgroundColor: Colors.orangeAccent,
             icon: Icon(Icons.list_alt),
             label: 'Donations',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             backgroundColor: Colors.orangeAccent,
             icon: Icon(Icons.shopping_cart),
             label: 'Adoptions',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             backgroundColor: Colors.orangeAccent,
             icon: Icon(Icons.person),
             label: 'Profile',
@@ -93,18 +92,6 @@ class _MyHomePageState extends State<NavigatorHomePage> {
   }
 }
 
-class DonationsPage extends StatelessWidget {
-  const DonationsPage({Key? key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('DonationsPage Page'),
-      ),
-    );
-  }
-}
 
 class AdoptionsPage extends StatelessWidget {
   const AdoptionsPage({Key? key});

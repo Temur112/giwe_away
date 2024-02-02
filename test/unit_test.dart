@@ -13,7 +13,7 @@ void main() {
         category: 'techs',
         itemName: 'headphones',
         description: 'Very Good',
-        postedDateString: postedDateString,
+        postedDateString: postedDateString, isAvailable: false,
       );
 
       // Assert
