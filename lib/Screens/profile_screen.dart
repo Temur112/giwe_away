@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 
-class UserProfile extends StatelessWidget {
+import '../Widgets/bottom_navigation.dart';
+
+class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
 
   @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
+  var _currentIndex = 4;
+
+  @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -47,6 +57,14 @@ class UserProfile extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        bottomNavigationBar: MyBottomNavigationBar(
+          selectedIndex: _currentIndex,
+          onTabTapped: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
         ),
       ),
     );

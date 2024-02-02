@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Widgets/HistoryProduct.dart';
+import '../Widgets/bottom_navigation.dart';
 import '../Widgets/items_card.dart';
 import '../styles.dart';
 
@@ -11,6 +12,7 @@ class DonationsScreen extends StatefulWidget {
 }
 
 class _DonationsScreenState extends State<DonationsScreen> {
+  var _currentIndex = 2;
   final bool _isEditable = true;
   bool _isActiveButtonActive = true;
 
@@ -131,6 +133,14 @@ class _DonationsScreenState extends State<DonationsScreen> {
               ),
             ],
           ),
+        ),
+        bottomNavigationBar: MyBottomNavigationBar(
+          selectedIndex: _currentIndex,
+          onTabTapped: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
         ),
       ),
     );

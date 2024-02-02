@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:giwe_away/Screens/all_items.dart';
 import 'package:giwe_away/Screens/create_new_item.dart';
 import 'package:giwe_away/Screens/donations_screen.dart';
-import 'package:giwe_away/Screens/navigator_page.dart';
 import 'package:giwe_away/Screens/product_details.dart';
 import 'package:giwe_away/Widgets/HistoryProduct.dart';
 import 'package:giwe_away/Widgets/bottom_navigation.dart';

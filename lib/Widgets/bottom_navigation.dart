@@ -1,67 +1,107 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+import '../Screens/adaptions_screen.dart';
+import '../Screens/all_items.dart';
+import '../Screens/donations_screen.dart';
+import '../Screens/main_screen.dart';
+import '../Screens/profile_screen.dart';
+import 'main_widgets.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyBottomNavigationBar(),
-    );
+class MyBottomNavigationBar extends StatelessWidget {
+  final int selectedIndex;
+  final Function(int) onTabTapped;
+
+  const MyBottomNavigationBar({
+    required this.selectedIndex,
+    required this.onTabTapped,
+  });
+
+  void _navigateAndHighlight(int index, BuildContext context) {
+    if (selectedIndex != index) {
+      onTabTapped(index); // Update the selected index
+
+      String routeName;
+      switch (index) {
+        case 0:
+          routeName = '/home_page';
+          break;
+        case 1:
+          routeName = '/explore';
+          break;
+        case 2:
+          routeName = '/donations';
+          break;
+        case 3:
+          routeName = '/adoptions';
+          break;
+        case 4:
+          routeName = '/profile';
+          break;
+        default:
+          return;
+      }
+
+      List<Widget Function()> screenBuilders = [
+            () => MainScreen(),
+            () => AllItems(),
+            () => DonationsScreen(),
+            () => AdaptionsScreen(),
+            () => UserProfile(),
+      ];
+
+      Navigator.pushReplacement(
+        context,
+        CustomPageRoute(
+          builder: (context) {
+            return screenBuilders[index]();
+          },
+          settings: RouteSettings(name: routeName),
+        ),
+      );
+    }
   }
-}
-
-class MyBottomNavigationBar extends StatefulWidget {
-  const MyBottomNavigationBar({super.key});
-
-  @override
-  _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
-}
-
-class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bottom Navigation Bar Example'),
-      ),
-      body: Center(
-        child: Text('Page ${_currentIndex + 1}'),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blue,
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'home_page',
-            backgroundColor: Colors.orangeAccent
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'explore',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on),
-            label: 'Donations',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.pets),
-            label: 'Adoptions',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'profile',
-          ),
-        ],
-      ),
+    List<Widget Function()> screenBuilders = [
+          () => MainScreen(),       // Replace with your actual home page widget
+          () => AllItems(),         // Replace with your actual explore page widget
+          () => DonationsScreen(),  // Replace with your actual donations page widget
+          () => AdaptionsScreen(),   // Replace with your actual adoptions page widget
+          () => UserProfile(),      // Replace with your actual profile page widget
+    ];
+
+    return BottomNavigationBar(
+      backgroundColor: Colors.blue,
+      currentIndex: selectedIndex,
+      onTap: (index) => _navigateAndHighlight(index, context),
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'home_page',
+          backgroundColor: Colors.orangeAccent,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search),
+          label: 'explore',
+          backgroundColor: Colors.orangeAccent,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.monetization_on),
+          label: 'Donations',
+          backgroundColor: Colors.orangeAccent,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.pets),
+          label: 'Adoptions',
+          backgroundColor: Colors.orangeAccent,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'profile',
+          backgroundColor: Colors.orangeAccent,
+        ),
+      ],
     );
   }
 }

@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:giwe_away/Screens/adaptions_screen.dart';
+import 'package:giwe_away/Screens/all_items.dart';
+import 'package:giwe_away/Screens/donations_screen.dart';
+import 'package:giwe_away/Screens/profile_screen.dart';
+import 'package:giwe_away/Widgets/bottom_navigation.dart';
 import '../Widgets/main_widgets.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +27,10 @@ class MainScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("GIVE", style: TextStyle(fontSize: 24, fontFamily: "RobotoMono" ),),
+                const Text(
+                  "GIVE",
+                  style: TextStyle(fontSize: 24, fontFamily: "RobotoMono"),
+                ),
                 const SizedBox(width: 10,),
                 Image.asset(
                   "assets/images/giving_hand.png",
@@ -23,7 +38,7 @@ class MainScreen extends StatelessWidget {
                   height: 50,
                 ),
                 const SizedBox(width: 10,),
-                const Text("AWAY",style: TextStyle(fontSize: 24))
+                const Text("AWAY", style: TextStyle(fontSize: 24)),
               ],
             ),
             Image.asset(
@@ -45,11 +60,9 @@ class MainScreen extends StatelessWidget {
               height: 40,
             ),
             Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.spaceEvenly, // Adjust alignment as needed
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 MyButton(
-
                   onPressed: () {
                     Navigator.pushNamed(context, '/login');
                   },
@@ -82,6 +95,14 @@ class MainScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar:MyBottomNavigationBar(
+        selectedIndex: _currentIndex,
+        onTabTapped: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      )
     );
   }
 }

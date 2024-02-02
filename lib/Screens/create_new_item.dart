@@ -46,7 +46,6 @@ class _CreateNewItemState extends State<CreateNewItem> {
         title: const Text('Create New Item'),
       ),
       body: SingleChildScrollView(
-        // Wrap your widget with SingleChildScrollView
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
