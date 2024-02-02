@@ -2,6 +2,18 @@
 
 A new Flutter project for mobile programming semester 5.
 
+IMPORTANT: We have implemented following functionalities in our application:
+* Logging in with e-mail and password(validation tests are all working properly. Checking both e-mail and password
+you can see from the code also)
+* Registering is also available with all validation tests.
+* Adding a new product as a user
+* Showing available products from the database
+* User details are shown in Profile Page
+* Navigating and Routing are working properly
+
+(In the video we submitted through the link, we could not show all of the functions as in the last time we run the 
+application API took to long to connect. However, you can see those functions in the code)
+
 GiveAway application where anyone can get an item or give it to others for free through 
 the application. The app starts with a simple starting screen where the user may go to
 the login, registration pages or just explore the app without logging in. 
