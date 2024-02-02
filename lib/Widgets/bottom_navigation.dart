@@ -42,11 +42,11 @@ class MyBottomNavigationBar extends StatelessWidget {
       }
 
       List<Widget Function()> screenBuilders = [
-            () => MainScreen(),
-            () => AllItems(),
-            () => DonationsScreen(),
-            () => AdaptionsScreen(),
-            () => UserProfile(),
+        () => MainScreen(),
+        () => AllItems(),
+        () => DonationsScreen(),
+        () => AdaptionsScreen(),
+        () => UserProfile(),
       ];
 
       Navigator.pushReplacement(
@@ -64,11 +64,11 @@ class MyBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget Function()> screenBuilders = [
-          () => MainScreen(),       // Replace with your actual home page widget
-          () => AllItems(),         // Replace with your actual explore page widget
-          () => DonationsScreen(),  // Replace with your actual donations page widget
-          () => AdaptionsScreen(),   // Replace with your actual adoptions page widget
-          () => UserProfile(),      // Replace with your actual profile page widget
+      () => MainScreen(), // Replace with your actual home page widget
+      () => AllItems(), // Replace with your actual explore page widget
+      () => DonationsScreen(), // Replace with your actual donations page widget
+      () => AdaptionsScreen(), // Replace with your actual adoptions page widget
+      () => UserProfile(), // Replace with your actual profile page widget
     ];
 
     return BottomNavigationBar(

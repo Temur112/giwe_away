@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const UserProfile(),
         '/explore': (context) => const AllItems(),
         '/add_item': (context) => const CreateNewItem(),
-        '/product_details': (context) => const ProductDetails(),
       },
     );
   }

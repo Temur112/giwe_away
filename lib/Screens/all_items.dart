@@ -7,6 +7,7 @@ import 'package:giwe_away/services/requests.dart';
 import 'create_new_item.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:giwe_away/Widgets/bottom_navigation.dart';
 
 class AllItems extends StatefulWidget {
   const AllItems({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class AllItems extends StatefulWidget {
 }
 
 class _AllItemsState extends State<AllItems> {
+  var _currentIndex = 1;
   late List<Products> products = [];
   bool isLoading = true;
 
@@ -53,45 +55,53 @@ class _AllItemsState extends State<AllItems> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Center(child: Text("All Items")),
-        ),
-        body: isLoading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : products.isEmpty
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text("No item in the list yet"),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const CreateNewItem()),
-                            );
-                          },
-                          child: const Text("Add Item"),
-                        ),
-                      ],
+          appBar: AppBar(
+            title: const Center(child: Text("All Items")),
+          ),
+          body: isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : products.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("No item in the list yet"),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const CreateNewItem()),
+                              );
+                            },
+                            child: const Text("Add Item"),
+                          ),
+                        ],
+                      ),
+                    )
+                  : GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 0.0,
+                        mainAxisSpacing: 0.0,
+                      ),
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        return ItemTemplate(item: products[index]);
+                      },
                     ),
-                  )
-                : GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 0.0,
-                      mainAxisSpacing: 0.0,
-                    ),
-                    itemCount: products.length,
-                    itemBuilder: (context, index) {
-                      return ItemTemplate(item: products[index]);
-                    },
-                  ),
-      ),
+          bottomNavigationBar: MyBottomNavigationBar(
+            selectedIndex: _currentIndex,
+            onTabTapped: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          )),
     );
   }
 }
