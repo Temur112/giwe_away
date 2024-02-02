@@ -26,16 +26,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: {
-        '/': (context) => const NavigatorPage()
-        // '/intro_2': (context) => const IntroScreen("Take instead of purchasing",
-        //     "assets/images/people.png", "Go registration", "/register"),
-        // '/home_page': (context) => MainScreen(),
-        // '/register': (context) => const RegisterScreen(),
-        // '/login': (context) => Login_Screen(),
-        // '/profile': (context) => const UserProfile(),
-        // '/explore': (context) => const AllItems(),
-        // '/add_item': (context) => const CreateNewItem(),
-        // '/product_details': (context) => const ProductDetails(),
+        '/': (context) => const MainScreen(),
+        '/intro_2': (context) => const IntroScreen("Take instead of purchasing",
+            "assets/images/people.png", "Go registration", "/register"),
+        '/home_page': (context) => const MainScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/login': (context) => Login_Screen(),
+        '/profile': (context) => const UserProfile(),
+        '/explore': (context) => const AllItems(),
+        '/add_item': (context) => const CreateNewItem(),
+        '/product_details': (context) => const ProductDetails(),
       },
     );
   }
