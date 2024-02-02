@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AllItems extends StatefulWidget {
-  const AllItems({super.key});
+  const AllItems({Key? key}) : super(key: key);
 
   @override
   State<AllItems> createState() => _AllItemsState();

@@ -7,7 +7,7 @@ void main() {
       // Arrange
       const postedDateString = '2022-01-01';
 
-
+      // Act
       final Item testItem = Item(
         itemImage: 'assets/images/headphone.png',
         category: 'techs',
