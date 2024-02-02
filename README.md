@@ -12,7 +12,8 @@ you can see from the code also)
 * Navigating and Routing are working properly
 
 (In the video we submitted through the link, we could not show all of the functions as in the last time we run the 
-application API took to long to connect. However, you can see those functions in the code)
+application API took to long to connect and we could not record till the end because of the time limit(our bad). 
+However, you can see those functions in the code)
 
 GiveAway application where anyone can get an item or give it to others for free through 
 the application. The app starts with a simple starting screen where the user may go to
