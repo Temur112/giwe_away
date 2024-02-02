@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:giwe_away/models/Products.dart';
 import 'package:intl/intl.dart';
 
 class InputField extends StatelessWidget {
@@ -41,7 +42,7 @@ class MyButton extends StatelessWidget {
 }
 
 class ItemTemplate extends StatelessWidget {
-  final dynamic item;
+  final Products item;
 
   const ItemTemplate({Key? key, required this.item}) : super(key: key);
 
@@ -55,8 +56,8 @@ class ItemTemplate extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset(
-                item.itemImage,
+              Image.memory(
+                item.image,
                 height: 100,
                 width: 70,
               ),
@@ -79,7 +80,7 @@ class ItemTemplate extends StatelessWidget {
             ],
           ),
           Text(
-            item.itemName,
+            item.name,
             style: const TextStyle(
               fontSize: 14.0,
               color: Colors.amber,
@@ -99,7 +100,6 @@ class ItemTemplate extends StatelessWidget {
   }
 }
 
-
 class ShowToastMessage {
   void showToast(String message) {
     Fluttertoast.showToast(
@@ -110,4 +110,5 @@ class ShowToastMessage {
       backgroundColor: Colors.black,
       textColor: Colors.white,
     );
-}}
+  }
+}

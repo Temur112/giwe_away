@@ -146,12 +146,12 @@ class _CreateNewItemState extends State<CreateNewItem> {
                       ShowToastMessage().showToast("Something is wrong");
                     } else {
                       Products product = Products(
-                        id: 1,
-                        name: itemNameController.text,
-                        description: itemDescriptionController.text,
-                        category: selectedCategory,
-                        image: pickedFile,
-                      );
+                          id: 1,
+                          name: itemNameController.text,
+                          description: itemDescriptionController.text,
+                          category: selectedCategory,
+                          image: pickedFile,
+                          postedDate: DateTime.now());
                       SharedPreferences preferences =
                           await SharedPreferences.getInstance();
                       int? id = preferences.getInt("id");

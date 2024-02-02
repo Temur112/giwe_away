@@ -29,13 +29,3 @@ Future<void> sendItemToApi(Products product, int id) async {
     }
   }
 }
-
-Future<List<Products>> getAllProducts() async {
-  final response = await http.get(Uri.parse(api_allProducts));
-  if (response.statusCode == 200) {
-    final List<dynamic> data = json.decode(response.body);
-    return data.map((json) => Products.fromJson(json)).toList();
-  } else {
-    throw Exception('Failed to load products');
-  }
-}
